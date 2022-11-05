@@ -1,0 +1,7 @@
+﻿# Ignore node.js modules
+node_modules/
+
+# Ignore built client files
+*.map
+*.js
+*.css
