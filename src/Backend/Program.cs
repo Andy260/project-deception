@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.ResponseCompression;
+using ProjectDeception.Backend.Hubs;
 
 namespace ProjectDeception.Backend
 {
@@ -6,14 +7,20 @@ namespace ProjectDeception.Backend
     {
         public static void Main(string[] args)
         {
-            var builder = WebApplication.CreateBuilder(args);
+            WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
-
             builder.Services.AddControllersWithViews();
             builder.Services.AddRazorPages();
+            builder.Services.AddResponseCompression(opts =>
+            {
+                opts.MimeTypes = ResponseCompressionDefaults.MimeTypes.Concat(
+                    new[] { "application/octet-stream" });
+            });
 
-            var app = builder.Build();
+            WebApplication app = builder.Build();
+
+            app.UseResponseCompression();
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
@@ -33,7 +40,6 @@ namespace ProjectDeception.Backend
             app.UseStaticFiles();
 
             app.UseRouting();
-
 
             app.MapRazorPages();
             app.MapControllers();
