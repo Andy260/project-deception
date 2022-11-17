@@ -43,6 +43,7 @@ namespace ProjectDeception.Backend
 
             app.MapRazorPages();
             app.MapControllers();
+            app.MapHub<RoomsHub>("/rooms");
             app.MapFallbackToFile("index.html");
 
             app.Run();
