@@ -5,19 +5,19 @@ namespace ProjectDeception.Backend.Data
 {
     /// <summary>
     /// Interface for interacting with data 
-    /// associated with rooms
+    /// associated with active players
     /// </summary>
-    public interface IRoomsData
+    public interface IPlayerData
     {
         /// <summary>
-        /// Created rooms
+        /// Active players
         /// </summary>
-        DbSet<Room> Rooms { get; }
+        DbSet<Player> Players { get; }
 
         int SaveChanges();
         int SaveChanges(bool acceptAllChangesOnSuccess);
         Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
-        Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, 
+        Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess,
             CancellationToken cancellationToken = default);
     }
 }

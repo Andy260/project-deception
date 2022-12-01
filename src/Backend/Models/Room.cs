@@ -16,5 +16,11 @@ namespace ProjectDeception.Backend.Models
         [MaxLength(6)]
         [Unicode(false)]
         public string? Code { get; set; }
+
+        /// <summary>
+        /// Players within this <see cref="Room"/>
+        /// </summary>
+        [Required]
+        public List<Player>? Players { get; set; }
     }
 }

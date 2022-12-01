@@ -7,7 +7,7 @@ namespace ProjectDeception.Backend.Data
     /// <summary>
     /// Database context
     /// </summary>
-    public class DbContext : DbContextBase, IRoomsData
+    public class DbContext : DbContextBase, IRoomsData, IPlayerData
     {
         #region Properties
 
@@ -15,6 +15,11 @@ namespace ProjectDeception.Backend.Data
         /// Created <see cref="Room"/>s
         /// </summary>
         public DbSet<Room> Rooms { get; set; }
+
+        /// <summary>
+        /// Active players
+        /// </summary>
+        public DbSet<Player> Players { get; set; }
 
         #endregion
 
