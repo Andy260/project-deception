@@ -89,12 +89,12 @@ namespace ProjectDeception.Tests.Backend.Hubs
                 // Ensure database state is valid
                 Assert.That(_dbContext.Rooms.Count(), Is.EqualTo(1));
                 // Ensure a user has been created for this request
-                Assert.That(createdPlayer.ConnectionId, Is.EqualTo("333477a9d8fa46a0ae420d970b0dcd73"));
-                Assert.That(createdPlayer.Name, Is.EqualTo("George"));
-                Assert.That(createdPlayer.Room, Is.EqualTo(createdRoom));
+                Assert.That(createdPlayer?.ConnectionId, Is.EqualTo("333477a9d8fa46a0ae420d970b0dcd73"));
+                Assert.That(createdPlayer?.Name, Is.EqualTo("George"));
+                Assert.That(createdPlayer?.Room, Is.EqualTo(createdRoom));
                 // Ensure created room is as expected
-                Assert.That(createdRoom.Code, Is.EqualTo(response));
-                Assert.That(createdRoom.Players, Contains.Item(createdPlayer));
+                Assert.That(createdRoom?.Code, Is.EqualTo(response));
+                Assert.That(createdRoom?.Players, Contains.Item(createdPlayer));
             });
         }
 
@@ -159,12 +159,12 @@ namespace ProjectDeception.Tests.Backend.Hubs
                 // Ensure database state is valid
                 Assert.That(_dbContext.Rooms.Count(), Is.EqualTo(rooms.Length + 1));
                 // Ensure a user has been created for this request
-                Assert.That(createdPlayer.ConnectionId, Is.EqualTo("281f5d6f5b05437d967d96537db5c383"));
-                Assert.That(createdPlayer.Name, Is.EqualTo("Matthew"));
-                Assert.That(createdPlayer.Room, Is.EqualTo(createdRoom));
+                Assert.That(createdPlayer?.ConnectionId, Is.EqualTo("281f5d6f5b05437d967d96537db5c383"));
+                Assert.That(createdPlayer?.Name, Is.EqualTo("Matthew"));
+                Assert.That(createdPlayer?.Room, Is.EqualTo(createdRoom));
                 // Ensure created room is as expected
-                Assert.That(createdRoom.Code, Is.EqualTo(response));
-                Assert.That(createdRoom.Players, Contains.Item(createdPlayer));
+                Assert.That(createdRoom?.Code, Is.EqualTo(response));
+                Assert.That(createdRoom?.Players, Contains.Item(createdPlayer));
             });
         }
 
@@ -214,12 +214,12 @@ namespace ProjectDeception.Tests.Backend.Hubs
 
                 // Ensure database state is valid
                 Assert.That(_dbContext.Players.Count(), Is.EqualTo(2));
-                Assert.That(createdPlayer.ConnectionId, Is.EqualTo("30828d75df9f4008b266049ea0e87958"));
-                Assert.That(createdPlayer.Name, Is.EqualTo("Red"));
-                Assert.That(createdPlayer.Room, Is.EqualTo(room));
-                Assert.That(room.Players, Is.Not.Null);
-                Assert.That(room.Players, Has.Count.EqualTo(2));
-                Assert.That(room.Players, Has.Member(createdPlayer));
+                Assert.That(createdPlayer?.ConnectionId, Is.EqualTo("30828d75df9f4008b266049ea0e87958"));
+                Assert.That(createdPlayer?.Name, Is.EqualTo("Red"));
+                Assert.That(createdPlayer?.Room, Is.EqualTo(room));
+                Assert.That(room?.Players, Is.Not.Null);
+                Assert.That(room?.Players, Has.Count.EqualTo(2));
+                Assert.That(room?.Players, Has.Member(createdPlayer));
             });
         }
 
