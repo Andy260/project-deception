@@ -13,6 +13,14 @@
         /// </summary>
         /// <param name="room"><see cref="Room"/> to get connection IDs from</param>
         /// <returns>Connection IDs of each <see cref="Player"/> in the <see cref="Room"/></returns>
+        /// <exception cref="ArgumentNullException">
+        /// Thrown when <paramref name="room"/> is null
+        /// </exception>
+        /// <exception cref="ArgumentException">
+        /// Thrown when the player list of <paramref name="room"/> is invalid
+        /// (List is null, contains no players, or a player contains a null connection ID, 
+        /// or connection ID is white space)
+        /// </exception>
         public static IList<string> GetConnectionIDs(this Room room)
         {
             // Ensure room isn't null

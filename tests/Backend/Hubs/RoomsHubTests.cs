@@ -1,5 +1,4 @@
 ﻿using System.Text.RegularExpressions;
-using AdvancedREI;
 using Microsoft.AspNetCore.SignalR;
 using Microsoft.EntityFrameworkCore;
 using Moq;
@@ -122,17 +121,17 @@ namespace ProjectDeception.Tests.Backend.Hubs
             players[0].Room         = rooms[0];
             players[0].Name         = "Frank";
             players[0].ConnectionId = "fd79c73ea78d4ec39bb3d217fe7d66c2";
-            rooms[0].Code           = GenerateRoomCode(60466176);
+            rooms[0].Code           = RoomUtilities.GenerateRoomCode(60466176);
             rooms[0].Players        = new List<Player> { players[0] };
             players[1].Room         = rooms[1];
             players[1].Name         = "Arin";
             players[1].ConnectionId = "1674a16282aa4bf99c47bfe4761cad99";
-            rooms[1].Code           = GenerateRoomCode(1375412751);
+            rooms[1].Code           = RoomUtilities.GenerateRoomCode(1375412751);
             rooms[1].Players        = new List<Player> { players[1] };
             players[2].Room         = rooms[1];
             players[2].Name         = "Anthony";
             players[2].ConnectionId = "02cb0fc388134b39b74f55957cc2d46f";
-            rooms[2].Code           = GenerateRoomCode(1855852599);
+            rooms[2].Code           = RoomUtilities.GenerateRoomCode(1855852599);
             rooms[2].Players        = new List<Player> { players[2] };
 
             await _dbContext.AddRangeAsync(rooms);
@@ -188,7 +187,7 @@ namespace ProjectDeception.Tests.Backend.Hubs
 
             Room room           = new();
             Player player       = new();
-            room.Code           = GenerateRoomCode(1340361989);
+            room.Code           = RoomUtilities.GenerateRoomCode(1340361989);
             room.Players        = new List<Player> { player };
             player.ConnectionId = "3b7bf21c2cb74141b2a10eb4cc1605b7";
             player.Name         = "Manny";
@@ -210,7 +209,7 @@ namespace ProjectDeception.Tests.Backend.Hubs
             // Assert
             Assert.Multiple(() =>
             {
-                Room? room               = _dbContext.Rooms.Find(GenerateRoomCode(1340361989));
+                Room? room               = _dbContext.Rooms.Find(RoomUtilities.GenerateRoomCode(1340361989));
                 Player? createdPlayer    = _dbContext.Players.Find("30828d75df9f4008b266049ea0e87958");
 
                 // Ensure database state is valid
@@ -244,12 +243,12 @@ namespace ProjectDeception.Tests.Backend.Hubs
 
             Room[] rooms            = new Room[] { new(), new() };
             Player[] players        = new Player[] { new(), new() };
-            rooms[0].Code           = GenerateRoomCode(731028452);
+            rooms[0].Code           = RoomUtilities.GenerateRoomCode(731028452);
             rooms[0].Players        = new List<Player> { players[0] };
             players[0].ConnectionId = "629efef350124c4f892128b3f2ecb7d5";
             players[0].Name         = "Neil";
             players[0].Room         = rooms[0];
-            rooms[1].Code           = GenerateRoomCode(1836008191);
+            rooms[1].Code           = RoomUtilities.GenerateRoomCode(1836008191);
             rooms[1].Players        = new List<Player> { players[1] };
             players[1].ConnectionId = "3f73578a7cd74531bd90910e17f13fb1";
             players[1].Name         = "Rod";
@@ -266,7 +265,7 @@ namespace ProjectDeception.Tests.Backend.Hubs
             };
 
             // Act & Assert
-            Assert.That(async () => await hub.RecieveJoinRoomRequest(GenerateRoomCode(1877670560), "Ben"),
+            Assert.That(async () => await hub.RecieveJoinRoomRequest(RoomUtilities.GenerateRoomCode(1877670560), "Ben"),
                     Throws.TypeOf<InvalidRoomCodeException>());
         }
 
@@ -290,12 +289,12 @@ namespace ProjectDeception.Tests.Backend.Hubs
 
             Room[] rooms            = new Room[] { new(), new() };
             Player[] players        = new Player[] { new(), new(), new() };
-            rooms[0].Code           = GenerateRoomCode(694078631);
+            rooms[0].Code           = RoomUtilities.GenerateRoomCode(694078631);
             rooms[0].Players        = new List<Player> { players[0] };
             players[0].ConnectionId = "f15cdf99dd2b400bb09d4808899daba5";
             players[0].Name         = "Ray";
             players[0].Room         = rooms[0];
-            rooms[1].Code           = GenerateRoomCode(979019483);
+            rooms[1].Code           = RoomUtilities.GenerateRoomCode(979019483);
             rooms[1].Players        = new List<Player> { players[1] };
             players[1].ConnectionId = "b801f2148d744869b5cabaa6f6e03970";
             players[1].Name         = "Tod";
@@ -349,7 +348,7 @@ namespace ProjectDeception.Tests.Backend.Hubs
             players[1].ConnectionId = "603323548ed44511bf192eec2e00e121";
             players[1].Name         = "Jake";
             players[1].Room         = room;
-            room.Code               = GenerateRoomCode(1954610763);
+            room.Code               = RoomUtilities.GenerateRoomCode(1954610763);
             room.Players            = new List<Player> { players[0], players[1] };
 
             await _dbContext.AddRangeAsync(players);
@@ -401,12 +400,12 @@ namespace ProjectDeception.Tests.Backend.Hubs
             players[0].ConnectionId = "77f41f68470f43a3929a1716a3a40236";
             players[0].Name         = "Kat";
             players[0].Room         = rooms[0];
-            rooms[0].Code           = GenerateRoomCode(1411616608);
+            rooms[0].Code           = RoomUtilities.GenerateRoomCode(1411616608);
             rooms[0].Players        = new List<Player>() { players[0] };
             players[1].ConnectionId = "296e89a9aaa2473791c3f2f49a65f00a";
             players[1].Name         = "Keiran";
             players[1].Room         = rooms[1];
-            rooms[1].Code           = GenerateRoomCode(647808596);
+            rooms[1].Code           = RoomUtilities.GenerateRoomCode(647808596);
             rooms[1].Players        = new List<Player>() { players[1] };
 
             await _dbContext.AddRangeAsync(players);
@@ -458,12 +457,12 @@ namespace ProjectDeception.Tests.Backend.Hubs
             players[0].ConnectionId = "a0ca19565f30406fa4548a8167025812";
             players[0].Name         = "Kevin";
             players[0].Room         = rooms[0];
-            rooms[0].Code           = GenerateRoomCode(1495914102);
+            rooms[0].Code           = RoomUtilities.GenerateRoomCode(1495914102);
             rooms[0].Players        = new List<Player> { players[0] };
             players[1].ConnectionId = "50d2643f50024ec1ad7de23944f8b767";
             players[1].Name         = "Mary";
             players[1].Room         = rooms[1];
-            rooms[1].Code           = GenerateRoomCode(1613217474);
+            rooms[1].Code           = RoomUtilities.GenerateRoomCode(1613217474);
             rooms[1].Players        = new List<Player> { players[1] };
 
             await _dbContext.AddRangeAsync(players);
@@ -488,21 +487,6 @@ namespace ProjectDeception.Tests.Backend.Hubs
         private static bool IsValidRoomCode(string code)
         {
             return RoomCodeRegex().IsMatch(code);
-        }
-
-        private static string GenerateRoomCode(int seed)
-        {
-            // Ensure seed is within limits
-            // (Room codes are actually a base 36 representation,
-            // or [A-Z, 0-9]{6} as a regular expression, with the
-            // minimum value being 100000 (or 60466176 in base10)
-            // so it's guaranteed to return a code with six characters
-            if (seed < 60466176 || seed > int.MaxValue || seed < 0)
-            {
-                throw new ArgumentOutOfRangeException(nameof(seed));
-            }
-
-            return Base36.NumberToBase36(seed);
         }
 
         #endregion
