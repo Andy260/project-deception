@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore.ChangeTracking;
 using ProjectDeception.Backend.Data;
 using ProjectDeception.Backend.Models;
 using ProjectDeception.Exceptions;
+using ProjectDeception.Hubs;
 
 namespace ProjectDeception.Backend.Hubs
 {
@@ -75,6 +76,12 @@ namespace ProjectDeception.Backend.Hubs
         /// <param name="roomCode">Code of the <see cref="Room"/> for the <see cref="Player"/> to join</param>
         /// <param name="playerName">Name of the <see cref="Player"/> joining the <see cref="Room"/></param>
         /// <returns><see cref="Task"/> representing this action</returns>
+        /// <exception cref="AlreadyInRoomException">
+        /// Thrown when the caller is already in a <see cref="Room"/>
+        /// </exception>
+        /// <exception cref="InvalidRoomCodeException">
+        /// Thrown when the caller provides an invalid <see cref="Room"/> code
+        /// </exception>
         [HubMethodName(nameof(IRoomsHubClient.RequestJoinRoom))]
         public async Task RecieveJoinRoomRequest(string roomCode, string playerName)
         {

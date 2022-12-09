@@ -7,6 +7,7 @@ using NUnit.Framework;
 using ProjectDeception.Backend.Hubs;
 using ProjectDeception.Backend.Models;
 using ProjectDeception.Exceptions;
+using ProjectDeception.Hubs;
 using DbContext = ProjectDeception.Backend.Data.DbContext;
 
 namespace ProjectDeception.Tests.Backend.Hubs

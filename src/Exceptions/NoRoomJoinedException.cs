@@ -1,8 +1,7 @@
 ﻿namespace ProjectDeception.Exceptions
 {
 	/// <summary>
-	/// Thrown when a player requests to leave a room
-	/// but isn't currently in a room
+	/// Thrown when the requesting player isn't in a room
 	/// </summary>
 	[Serializable]
 	public class NoRoomJoinedException : Exception

@@ -1,4 +1,4 @@
-﻿namespace ProjectDeception
+﻿namespace ProjectDeception.Hubs
 {
     /// <summary>
     /// Interface for clients interacting with the Rooms Hub
