@@ -8,6 +8,8 @@ const sass = require("gulp-dart-sass");
 const sourcemaps = require("gulp-sourcemaps");
 const ts = require("gulp-typescript");
 const uglify = require("gulp-uglify");
+const postcss = require("gulp-postcss");
+const autoprefixer = require("autoprefixer");
 
 let isProduction: boolean = process.env.NODE_ENV === "production";
 
@@ -25,6 +27,7 @@ function compileComponentSCSS(): any
         .pipe(filelog())
         .pipe(gulpif(!isProduction, sourcemaps.init()))
         .pipe(sass(scssSettings).on("error", sass.logError))
+        .pipe(postcss([autoprefixer()]))
         .pipe(gulpif(isProduction, cleancss({ level: 2 })))
         .pipe(gulpif(!isProduction, sourcemaps.write("./")))
         .pipe(dest("./"));
@@ -37,6 +40,7 @@ function compileAppSCSS(): any
         .pipe(filelog())
         .pipe(gulpif(!isProduction, sourcemaps.init()))
         .pipe(sass(scssSettings).on("error", sass.logError))
+        .pipe(postcss([autoprefixer()]))
         .pipe(gulpif(isProduction, cleancss({ level: 2 })))
         .pipe(gulpif(!isProduction, sourcemaps.write("./")))
         .pipe(dest("./wwwroot/css"));
