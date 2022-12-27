@@ -32,6 +32,7 @@ namespace ProjectDeception.Tests
         [TestCase("dsfsv01")]
         [TestCase("JKAL0915")]
         [TestCase("u6qe57")]
+        [TestCase("100000")]
         public void IsValidRoomCode_InvalidCode(string roomCode)
         {
             // Act & Assert
