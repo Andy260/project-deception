@@ -1,4 +1,5 @@
 ﻿using System.Text.RegularExpressions;
+using AdvancedREI;
 
 namespace ProjectDeception.Rooms
 {
@@ -20,12 +21,22 @@ namespace ProjectDeception.Rooms
         /// <returns>True if the given room code is valid</returns>
         public static bool IsValidRoomCode(string roomCode)
         {
-            if (string.IsNullOrWhiteSpace(roomCode) || roomCode.Length > 6)
+            if (string.IsNullOrWhiteSpace(roomCode) || 
+                roomCode.Length > 6 ||
+                !RoomCodeRegex().IsMatch(roomCode))
             {
                 return false;
             }
 
-            return RoomCodeRegex().IsMatch(roomCode);
+            long number = Base36.Base36ToNumber(roomCode);
+            if (number < 60466177)
+            {
+                // Code should be above 100000 base36
+                return false;
+            }
+
+            // Valid code
+            return true;
         }
     }
 }
